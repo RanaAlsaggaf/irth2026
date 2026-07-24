@@ -1,0 +1,982 @@
+/* Import the Arabic font used in the generated PDF report. */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap");
+
+
+/* Shared color variables used throughout the results page and PDF report. */
+:root {
+  --rGreen: #3f6f3a;
+  --rPurple: #7b5fa3;
+  --rPurpleLight: #9b86b3;
+  --rText: #2e2535;
+  --rMuted: rgba(0, 0, 0, 0.45);
+  --rBg: #e9f3ea;
+  --rWhite: #ffffff;
+}
+
+/* Main Results page wrapper. */
+.rPage {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--rBg);
+  direction: rtl;
+
+  font-family:
+    "TheYearofHandicrafts",
+    sans-serif;
+}
+
+/* Keep the shared top bar above the page content. */
+.rTopbar {
+  position: relative;
+  z-index: 10;
+}
+
+/* Create the main content and architectural image columns. */
+.rLayout {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns:
+    1fr minmax(260px, 34%);
+
+  min-height:
+    calc(100vh - 64px);
+
+  direction: rtl;
+}
+
+/* Scrollable content column containing the score and details. */
+.rContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding:
+    40px 56px 48px 32px;
+
+  overflow-y: auto;
+}
+
+/* Main compliance score summary card. */
+.rScoreCard {
+  position: relative;
+
+  padding:
+    44px 40px 40px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(0, 0, 0, 0.05);
+
+  border-radius: 24px;
+
+  background: var(--rWhite);
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.07),
+    0 24px 48px rgba(123, 95, 163, 0.08);
+}
+
+/* Shared styling for decorative score-card gradients. */
+.rScoreBlob {
+  position: absolute;
+  z-index: 0;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+/* Position the first decorative gradient. */
+.rScoreBlob--a {
+  top: -100px;
+  left: -80px;
+
+  width: 280px;
+  height: 280px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(236, 244, 235, 0.8) 0%,
+      transparent 70%
+    );
+}
+
+/* Position the second decorative gradient. */
+.rScoreBlob--b {
+  right: -40px;
+  bottom: -60px;
+
+  width: 180px;
+  height: 180px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(213, 202, 230, 0.45) 0%,
+      transparent 70%
+    );
+}
+
+/* Keep the score-card content above its decorative elements. */
+.rScoreInner {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  text-align: right;
+}
+
+/* Main Results page title. */
+.rTitle {
+  margin: 0;
+
+  color: var(--rGreen);
+
+  font-size:
+    clamp(34px, 4vw, 36px);
+
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+/* Heading describing the selected architectural region. */
+.rHeading {
+  margin: 0;
+
+  color: var(--rPurple);
+
+  font-size:
+    clamp(20px, 2.2vw, 22px);
+
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+/* Short compliance result message. */
+.rSummaryShort {
+  margin: 0;
+
+  color: var(--rText);
+
+  font-size:
+    clamp(16px, 1.5vw, 16px);
+
+  font-weight: 700;
+  line-height: 2;
+}
+
+/* Highlight the compliance percentage inside the summary. */
+.rAccent {
+  color: var(--rPurple);
+  font-weight: 900;
+}
+
+/* Container for the result action buttons. */
+.rActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+
+  padding-top: 4px;
+}
+
+/* Primary button used to show or hide detailed results. */
+.rPrimaryBtn {
+  padding: 13px 28px;
+
+  border: 0;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9b86b3 0%,
+      #7b5fa3 100%
+    );
+
+  color: var(--rWhite);
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 14px rgba(123, 95, 163, 0.35);
+
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+/* Primary button hover state. */
+.rPrimaryBtn:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 8px 22px rgba(123, 95, 163, 0.45);
+}
+
+/* Secondary button used to start another analysis. */
+.rSecondaryBtn {
+  padding: 11px 22px;
+
+  border:
+    2px solid rgba(63, 111, 58, 0.3);
+
+  border-radius: 14px;
+
+  background: transparent;
+  color: var(--rGreen);
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.15s;
+}
+
+/* Secondary button hover state. */
+.rSecondaryBtn:hover {
+  border-color: var(--rGreen);
+
+  background:
+    rgba(63, 111, 58, 0.07);
+
+  transform:
+    translateY(-1px);
+}
+
+/* Expandable details section. */
+.rDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  animation:
+    slideDown 0.3s ease;
+}
+
+/* Animate the detailed report when it becomes visible. */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* Reusable content card for summaries, findings, and recommendations. */
+.rBlock {
+  padding: 22px 24px;
+
+  border:
+    1px solid rgba(0, 0, 0, 0.05);
+
+  border-radius: 18px;
+
+  background: var(--rWhite);
+
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.05);
+
+  text-align: right;
+}
+
+/* Heading inside each detailed result card. */
+.rBlockTitle {
+  margin: 0 0 12px;
+
+  color: var(--rGreen);
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Paragraph content inside a detailed result card. */
+.rBlockText {
+  margin: 0;
+
+  color: var(--rMuted);
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 2;
+}
+
+/* Reset and arrange findings and recommendations lists. */
+.rList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* Individual findings or recommendations list item. */
+.rListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  color: var(--rMuted);
+
+  direction: rtl;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+/* Decorative dot displayed beside each list item. */
+.rListDot {
+  flex-shrink: 0;
+
+  width: 7px;
+  height: 7px;
+
+  margin-top: 8px;
+
+  border-radius: 50%;
+
+  background:
+    var(--rPurpleLight);
+}
+
+/* Add spacing above the PDF download action. */
+.rDownloadWrap {
+  margin-top: 6px;
+}
+
+/* PDF download button. */
+.rDownloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 20px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: var(--rGreen);
+  color: var(--rWhite);
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+}
+
+/* PDF download button hover state. */
+.rDownloadBtn:hover {
+  opacity: 0.88;
+
+  transform:
+    translateY(-1px);
+}
+
+/* ===== Image column ===== */
+
+/* Architectural image column. */
+.rImageCol {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 28px;
+
+  overflow: hidden;
+
+  border-right:
+    1px solid rgba(0, 0, 0, 0.04);
+
+  background:
+    rgba(236, 244, 235, 0.35);
+
+  transition:
+    padding 0.4s ease;
+}
+
+/* Main image representing the selected architectural region. */
+.rMainImg {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+
+  border-radius:
+    0 100px 0 100px;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 20px 40px rgba(0, 0, 0, 0.12)
+    );
+
+  transition:
+    max-width 0.4s ease,
+    filter 0.4s ease;
+}
+
+/* Enlarge the architectural image when details are expanded. */
+.rImageCol.isExpanded .rMainImg {
+  max-width: 480px;
+
+  filter:
+    drop-shadow(
+      0 28px 52px rgba(0, 0, 0, 0.18)
+    );
+}
+
+/* Shared positioning for architectural decorations. */
+.rDecor {
+  position: absolute;
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+/* Position the triangle decoration. */
+.rDecorTriangle {
+  top: 20px;
+  left: 20px;
+
+  width: 90px;
+  opacity: 0.9;
+
+  transition:
+    transform 0.4s ease;
+}
+
+/* Position the palm decoration. */
+.rDecorPalm {
+  bottom: -10px;
+  left: -10px;
+
+  width: 220px;
+  opacity: 0.95;
+
+  transition:
+    transform 0.4s ease;
+}
+
+/* Animate the triangle while the details panel is expanded. */
+.rImageCol.isExpanded .rDecorTriangle {
+  transform:
+    scale(1.12) rotate(-6deg);
+}
+
+/* Animate the palm while the details panel is expanded. */
+.rImageCol.isExpanded .rDecorPalm {
+  transform:
+    scale(1.08) translateY(-8px);
+}
+
+/* Stack the page into one column on tablets and smaller screens. */
+@media (max-width: 980px) {
+  .rLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .rContent {
+    order: 1;
+
+    padding:
+      24px 20px 40px;
+  }
+
+  .rImageCol {
+    order: 2;
+
+    min-height: 220px;
+    padding: 20px;
+
+    border-top:
+      1px solid rgba(0, 0, 0, 0.04);
+
+    border-right: none;
+  }
+
+  .rMainImg {
+    max-width: 200px;
+  }
+}
+
+/* Hidden A4-sized report captured by html2canvas for PDF generation. */
+.pdfReport {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  z-index: -1;
+
+  width: 794px;
+  min-height: 1123px;
+  box-sizing: border-box;
+  padding: 52px;
+
+  overflow: visible;
+  pointer-events: none;
+
+  background: var(--rWhite);
+  color: var(--rText);
+
+  direction: rtl;
+  text-align: right;
+
+  font-family:
+    "IBM Plex Sans Arabic",
+    sans-serif;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.9;
+
+  letter-spacing: 0;
+  word-spacing: normal;
+
+  font-synthesis: none;
+
+  text-rendering:
+    geometricPrecision;
+}
+
+/* Enforce consistent box sizing and Arabic typography inside the PDF. */
+.pdfReport,
+.pdfReport * {
+  box-sizing: border-box;
+
+  font-family:
+    "IBM Plex Sans Arabic",
+    sans-serif !important;
+
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+
+  font-kerning: normal;
+
+  font-variant-ligatures:
+    common-ligatures contextual;
+}
+
+/* PDF branding header. */
+.pdfReportHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+/* Group the PDF brand name and subtitle. */
+.pdfBrandGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Main IRTH brand name inside the report. */
+.pdfBrand {
+  color: var(--rGreen);
+
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* Supporting brand description below the report logo text. */
+.pdfBrandSubtitle {
+  margin-top: 5px;
+
+  color: var(--rMuted);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Optional label displayed in the PDF header. */
+.pdfHeaderLabel {
+  padding: 10px 18px;
+
+  border-radius: 50px;
+
+  background:
+    rgba(123, 95, 163, 0.1);
+
+  color: var(--rPurple);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Gradient divider below the PDF header. */
+.pdfDivider {
+  width: 100%;
+  height: 2px;
+
+  margin: 24px 0 28px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(63, 111, 58, 0.12),
+      rgba(123, 95, 163, 0.55),
+      rgba(63, 111, 58, 0.12)
+    );
+}
+
+/* ===== PDF report title ===== */
+
+/* Container for the report title and subtitle. */
+.pdfTitleSection {
+  margin-bottom: 24px;
+}
+
+/* Main PDF report title. */
+.pdfTitle {
+  margin: 0;
+
+  color: var(--rPurple);
+
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+/* PDF description of the analyzed region. */
+.pdfSubtitle {
+  margin: 8px 0 0;
+
+  color: var(--rMuted);
+
+  direction: rtl;
+  text-align: right;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.9;
+}
+
+/* ===== PDF score ===== */
+
+/* Highlighted compliance score area in the PDF. */
+.pdfScoreBox {
+  margin-bottom: 26px;
+  padding: 24px;
+
+  border:
+    1px solid rgba(63, 111, 58, 0.15);
+
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(213, 202, 230, 0.42),
+      transparent 42%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(233, 243, 234, 0.95),
+      rgba(255, 255, 255, 1)
+    );
+
+  text-align: center;
+}
+
+/* Compliance score label. */
+.pdfScoreLabel {
+  color: var(--rGreen);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Large compliance percentage value. */
+.pdfScoreValue {
+  margin: 4px 0;
+
+  color: var(--rPurple);
+
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Supporting description below the PDF score. */
+.pdfScoreDescription {
+  color: var(--rMuted);
+
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Two-column grid containing report metadata. */
+.pdfInfoGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 13px;
+  margin-bottom: 28px;
+}
+
+/* Individual metadata card. */
+.pdfInfoItem {
+  min-height: 82px;
+  padding: 15px 16px;
+
+  border:
+    1px solid rgba(0, 0, 0, 0.06);
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 14px rgba(46, 37, 53, 0.04);
+}
+
+/* Metadata field label. */
+.pdfInfoLabel {
+  margin-bottom: 5px;
+
+  color: var(--rGreen);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Metadata field value. */
+.pdfInfoValue {
+  color: var(--rText);
+
+  direction: rtl;
+  text-align: right;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.8;
+
+  word-break: normal;
+
+  overflow-wrap:
+    break-word;
+}
+
+/* Reusable PDF section card. */
+.pdfSection {
+  margin-bottom: 20px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(0, 0, 0, 0.06);
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 14px rgba(46, 37, 53, 0.035);
+}
+
+/* Colored title bar for each PDF section. */
+.pdfSectionTitle {
+  margin: 0;
+  padding: 13px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 243, 234, 0.95),
+      rgba(213, 202, 230, 0.34)
+    );
+
+  color: var(--rGreen);
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* Content area inside each PDF section. */
+.pdfSectionContent {
+  min-width: 0;
+
+  padding: 17px 20px;
+}
+
+/* Paragraph content used in the PDF summary section. */
+.pdfParagraph {
+  display: block;
+
+  width: 100%;
+  margin: 0;
+
+  color: var(--rText);
+
+  direction: rtl;
+  text-align: right;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2.15;
+
+  white-space: normal;
+  word-break: normal;
+
+  overflow-wrap:
+    break-word;
+}
+
+/* Reset the PDF findings and recommendations lists. */
+.pdfList {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* Individual PDF list item with a custom bullet. */
+.pdfListItem {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr);
+
+  align-items: start;
+  gap: 9px;
+
+  margin-bottom: 10px;
+
+  color: var(--rText);
+
+  direction: rtl;
+  text-align: right;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.95;
+
+  white-space: normal;
+  word-break: normal;
+
+  overflow-wrap:
+    break-word;
+}
+
+/* Remove extra spacing from the final PDF list item. */
+.pdfListItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Allow long list-item text to shrink and wrap correctly. */
+.pdfListItem > span:last-child {
+  min-width: 0;
+}
+
+/* Custom PDF list bullet. */
+.pdfBullet {
+  flex-shrink: 0;
+
+  color:
+    var(--rPurpleLight);
+
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+/* Report identifier and creation date footer. */
+.pdfFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-top: 30px;
+  padding-top: 15px;
+
+  border-top:
+    1px solid rgba(0, 0, 0, 0.08);
+
+  color: var(--rMuted);
+
+  direction: rtl;
+  text-align: right;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Disable interaction while the PDF is being generated. */
+.rDownloadBtn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
+}
+
+/* Preserve the disabled appearance during hover. */
+.rDownloadBtn:disabled:hover {
+  opacity: 0.65;
+  transform: none;
+}
+
+/* Print-specific rules for displaying the hidden report normally. */
+@media print {
+  .pdfReport {
+    position: static;
+    left: auto;
+
+    width: 100%;
+    min-height: auto;
+    padding: 0;
+  }
+}

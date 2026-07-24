@@ -1,0 +1,538 @@
+/* Main upload page layout and background. */
+.uPage {
+  min-height: 100vh;
+  background: #e9f3ea;
+  padding: 28px 24px 48px;
+  font-family: "TheYearofHandicrafts", sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Center the workflow stepper above the upload panel. */
+.uStepperWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+/* Arrange the workflow steps and connectors horizontally. */
+.sStepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  direction: rtl;
+}
+
+/* Individual workflow step container. */
+.sStep {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  min-width: 90px;
+}
+
+/* Default appearance of each workflow step circle. */
+.sCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: #aaa;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+/* Step number displayed inside an incomplete step. */
+.sCircleNum {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Highlight the currently active workflow step. */
+.sCircle.isActive {
+  border-color: #7b5fa3;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(123, 95, 163, 0.15);
+  color: #7b5fa3;
+}
+
+/* Display completed workflow steps using the success color. */
+.sCircle.isDone {
+  border-color: #3f6f3a;
+  background: #3f6f3a;
+  color: #fff;
+}
+
+/* Label displayed below each workflow step. */
+.sLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+/* Highlight the label of the active workflow step. */
+.sLabel.isActiveLabel {
+  color: #7b5fa3;
+}
+
+/* Connector line displayed between workflow steps. */
+.sTrack {
+  width: 48px;
+  height: 3px;
+  background: #e8e4ef;
+  border-radius: 100px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Fill element used to show completed progress. */
+.sTrackFill {
+  height: 100%;
+  width: 0%;
+  background: #3f6f3a;
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+/* Expand the connector fill after a step is completed. */
+.sTrackFill.isFilled {
+  width: 100%;
+}
+
+/* Center the main upload panel within the page. */
+.uContainer {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+}
+
+/* Main card containing the file upload interface. */
+.uPanel {
+  position: relative;
+  width: min(860px, 100%);
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 52px 44px 80px;
+  display: grid;
+  justify-items: center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.07),
+    0 24px 48px rgba(123, 95, 163, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Shared styling for decorative background gradients. */
+.uBlob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Position the top-right decorative gradient. */
+.uBlob--tr {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(236, 244, 235, 0.9) 0%, transparent 70%);
+}
+
+/* Position the bottom-left decorative gradient. */
+.uBlob--bl {
+  width: 200px;
+  height: 200px;
+  bottom: -60px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(213, 202, 230, 0.5) 0%, transparent 70%);
+}
+
+/* Keep the interactive content above decorative elements. */
+.uContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+}
+
+/* Group the page heading and supporting text. */
+.uTitleGroup {
+  text-align: center;
+  display: grid;
+  gap: 8px;
+}
+
+/* Small label identifying the current workflow step. */
+.uEyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 250px;
+  min-height: 40px;
+  padding: 5px 28px 7px;
+
+  font-family: "TheYearofHandicrafts", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+
+  color: #9b86b3;
+  background: rgba(155, 134, 179, 0.1);
+  border-radius: 100px;
+  overflow: visible;
+}
+
+/* Main upload page title. */
+.uTitle {
+  margin: 0;
+  color: #2e2535;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Supporting instruction displayed below the title. */
+.uSubtitle {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Hide the native file inputs from the interface. */
+.uHiddenInput {
+  display: none;
+}
+
+/* Main drag-and-drop file selection area. */
+.uDropzone {
+  width: min(560px, 95%);
+  background: #faf9fc;
+  border: 2px dashed #d6cfe8;
+  border-radius: 18px;
+  padding: 36px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  text-align: center;
+}
+
+/* Highlight the drop zone on hover or keyboard focus. */
+.uDropzone:hover,
+.uDropzone:focus {
+  border-color: #9b86b3;
+  background: #f3f0f8;
+  outline: none;
+}
+
+/* Highlight the drop zone while a file is being dragged over it. */
+.uDropzone--active {
+  border-color: #7b5fa3;
+  background: #ede8f5;
+  transform: scale(1.01);
+}
+
+/* Arrange the content inside the drop zone. */
+.uDropInner {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+/* Background container for the upload icon. */
+.uCloudWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(155, 134, 179, 0.12);
+  display: grid;
+  place-items: center;
+}
+
+/* Upload cloud icon. */
+.uCloud {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* Primary instruction inside the drop zone. */
+.uDropMain {
+  margin: 0;
+  font-weight: 800;
+  font-size: 15px;
+  color: #2e2535;
+}
+
+/* Supported file formats displayed below the instruction. */
+.uDropSub {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.35);
+  letter-spacing: 1px;
+}
+
+/* Selected file information card. */
+.uFileCard {
+  width: min(560px, 95%);
+  background: #f3f8f2;
+  border: 2px solid rgba(63, 111, 58, 0.25);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  direction: rtl;
+  animation: fadeIn 0.25s ease;
+}
+
+/* File icon displayed inside the selected file card. */
+.uFileIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(63, 111, 58, 0.1);
+  display: grid;
+  place-items: center;
+  color: #3f6f3a;
+  flex-shrink: 0;
+}
+
+/* Container for the selected file name and size. */
+.uFileInfo {
+  display: grid;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Selected file name with overflow handling. */
+.uFileName {
+  font-weight: 800;
+  font-size: 14px;
+  color: #2e2535;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Selected file size. */
+.uFileSize {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Success indicator displayed after a file is selected. */
+.uFileCheck {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #3f6f3a;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* Animate the selected file card when it appears. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container for the replace and delete actions. */
+.uMiniActions {
+  display: flex;
+  gap: 10px;
+  direction: rtl;
+}
+
+/* Shared styling for the small file action buttons. */
+.uMiniBtn {
+  border: 0;
+  border-radius: 10px;
+  padding: 9px 20px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+/* Lift enabled file action buttons on hover. */
+.uMiniBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* Disabled state for file action buttons. */
+.uMiniBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Replace-file button appearance. */
+.uMiniBtn--replace {
+  background: rgba(63, 111, 58, 0.1);
+  color: #3f6f3a;
+}
+
+/* Delete-file button appearance. */
+.uMiniBtn--delete {
+  background: rgba(200, 60, 60, 0.08);
+  color: #b03030;
+}
+
+/* Primary button used to submit the file for analysis. */
+.uUploadBtn {
+  width: min(320px, 100%);
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #9b86b3 0%, #7b5fa3 100%);
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow:
+    0 4px 14px rgba(123, 95, 163, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  direction: rtl;
+  margin-top: 4px;
+}
+
+/* Lift the enabled upload button on hover. */
+.uUploadBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 22px rgba(123, 95, 163, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Return the upload button to its original position while pressed. */
+.uUploadBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(123, 95, 163, 0.3);
+}
+
+/* Disabled state for the upload button. */
+.uUploadBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Loading spinner displayed during analysis. */
+.uSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* Rotate the loading spinner continuously. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shared positioning rules for architectural decorations. */
+.uDecor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Position the triangle decoration. */
+.uTriangle {
+  top: 20px;
+  left: 30px;
+  width: 90px;
+  opacity: 0.9;
+}
+
+/* Position the palm decoration. */
+.uPalm {
+  left: -2px;
+  bottom: -5px;
+  width: 200px;
+  opacity: 0.95;
+}
+
+/* Position the architectural leg decoration. */
+.uLeg {
+  right: 22px;
+  top: 40px;
+  width: 90px;
+  opacity: 0.85;
+}
+
+/* Responsive adjustments for mobile screens. */
+@media (max-width: 600px) {
+  .uPanel {
+    padding: 40px 20px 36px;
+    border-radius: 18px;
+  }
+
+  .uTitle {
+    font-size: 24px;
+  }
+
+  .uPalm {
+    width: 180px;
+  }
+
+  .uLeg {
+    width: 80px;
+  }
+
+  .uTriangle {
+    width: 70px;
+  }
+
+  .sTrack {
+    width: 28px;
+  }
+}

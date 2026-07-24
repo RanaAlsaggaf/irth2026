@@ -1,0 +1,146 @@
+/* Main top navigation bar container. */
+.topbar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 9999;
+}
+
+/* Center and arrange the navigation bar content. */
+.topbar__inner {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 16px 0 10px;
+
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  font-family: "TheYearofHandicrafts";
+}
+
+/* Primary call-to-action link. */
+.topbar__start {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 14px;
+  border-radius: 10px;
+
+  background: linear-gradient(
+      107deg,
+      rgba(251, 123, 4, 0) 0%,
+      rgba(72, 128, 55, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  backdrop-filter: blur(15px) brightness(100%);
+  -webkit-backdrop-filter: blur(15px) brightness(100%);
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  color: #3f6f3a;
+  text-decoration: none;
+  font-weight: 800;
+
+  white-space: nowrap;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+/* Enhance the call-to-action link on hover. */
+.topbar__start:hover {
+  background: linear-gradient(
+      107deg,
+      rgba(251, 123, 4, 0) 0%,
+      rgba(72, 128, 55, 0.3) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  box-shadow: 0 4px 16px rgba(63, 111, 58, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Return the call-to-action link to its original position while pressed. */
+.topbar__start:active {
+  transform: translateY(0px);
+}
+
+/* Main navigation links container. */
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+
+  flex: 1; 
+}
+
+/* Default styling for navigation links. */
+.topbar__link {
+  text-decoration: none;
+  color: rgba(31, 42, 31, 0.75);
+  font-weight: 800;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+/* Highlight navigation links on hover. */
+.topbar__link:hover {
+  color: #3f6f3a;
+}
+
+/* Highlight the link that matches the current route. */
+.topbar__link.active {
+  color: #3f6f3a;
+}
+
+/* Container for the clickable logo. */
+.topbar__logoWrap {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* IRTH logo image. */
+.topbar__logo {
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Responsive adjustments for mobile screens. */
+@media (max-width: 560px) {
+  /* Reduce the navigation bar's vertical spacing. */
+  .topbar__inner {
+    padding: 8px 0 4px;
+  }
+
+  /* Reduce the spacing between navigation links. */
+  .topbar__nav {
+    gap: 12px;
+  }
+
+  /* Reduce the logo height on mobile devices. */
+  .topbar__logo {
+    height: 28px;
+  }
+
+  /* Reduce the call-to-action button padding. */
+  .topbar__start {
+    padding: 7px 10px;
+  }
+}

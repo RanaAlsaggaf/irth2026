@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+irth-backend/node_modules/
+irth-frontend/node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+irth-backend/.env
+irth-frontend/.env
+irth-frontend/.env.local
+
+# Frontend build
+irth-frontend/build/
+
+# Generated backend files
+irth-backend/uploads/*
+irth-backend/reports/*
+
+# Keep empty directories
+!irth-backend/uploads/.gitkeep
+!irth-backend/reports/.gitkeep
+
+# Vercel
+.vercel/
+irth-frontend/.vercel/
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db

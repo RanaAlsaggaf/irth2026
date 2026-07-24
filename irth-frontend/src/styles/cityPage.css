@@ -1,0 +1,447 @@
+/* ============================================================
+   CITY SELECTION PAGE
+   ============================================================ */
+
+/* Main page layout and background. */
+.pPage {
+  min-height: 100vh;
+  background: #e9f3ea;
+  padding: 28px 24px 48px;
+  font-family: "TheYearofHandicrafts", sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+
+/* Container for the progress stepper. */
+.pTop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+/* Centers the main content within the page. */
+.pContainer {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+}
+
+/* Main card that contains the city selection interface. */
+.pPanel {
+  position: relative;
+  width: min(860px, 100%);
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 52px 44px 80px;
+  display: grid;
+  justify-items: center;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.04),
+    0 8px 24px rgba(0,0,0,0.07),
+    0 24px 48px rgba(123, 95, 163, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Shared styling for decorative background gradients. */
+.pBlob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Top-right decorative gradient. */
+.pBlob--tl {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  right: -60px;
+  background: radial-gradient(
+    circle,
+    rgba(236, 244, 235, 0.9) 0%,
+    transparent 70%
+  );
+}
+
+/* Bottom-left decorative gradient. */
+.pBlob--br {
+  width: 200px;
+  height: 200px;
+  bottom: -60px;
+  left: -40px;
+  background: radial-gradient(
+    circle,
+    rgba(213, 202, 230, 0.5) 0%,
+    transparent 70%
+  );
+}
+
+/* Keeps the interactive content above the decorations. */
+.pContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+}
+
+/* Groups the step label, page title, and subtitle. */
+.pTitleGroup {
+  text-align: center;
+  display: grid;
+  gap: 8px;
+}
+
+/* Small label that identifies the current workflow step. */
+.pEyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+  padding: 5px 28px 7px;
+
+  font-family: "TheYearofHandicrafts", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+
+  color: #9b86b3;
+  background: rgba(155, 134, 179, 0.1);
+  border-radius: 100px;
+  overflow: visible;
+}
+
+/* Main page heading. */
+.pTitle {
+  margin: 0;
+  color: #2e2535;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Supporting instruction displayed below the title. */
+.pSubtitle {
+  margin: 0;
+  color: rgba(0,0,0,0.45);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* City selection field container. */
+.pField {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+/* Label displayed above the city select input. */
+.pLabel {
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(0,0,0,0.55);
+  letter-spacing: 0.5px;
+  align-self: start;
+  text-align: right;
+  width: min(560px, 95%);
+  direction: rtl;
+}
+
+/* Provides positioning context for the custom select arrow. */
+.pSelectWrapper {
+  position: relative;
+  width: min(560px, 95%);
+}
+
+/* Customized city selection dropdown. */
+.pSelect {
+  width: 100%;
+  padding: 13px 18px 13px 44px;
+  border-radius: 14px;
+  border: 2px solid #e8e4ef;
+  background: #faf9fc;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2e2535;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  direction: rtl;
+}
+
+/* Highlight the dropdown while it is focused. */
+.pSelect:focus {
+  outline: none;
+  border-color: #9b86b3;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(155, 134, 179, 0.15);
+}
+
+/* Keep the focused border style synchronized with component state. */
+.pField--focused .pSelect {
+  border-color: #9b86b3;
+}
+
+/* Custom arrow displayed inside the select field. */
+.pSelectArrow {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9b86b3;
+  font-size: 16px;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Displays the currently selected city. */
+.pSelectedBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(63, 111, 58, 0.08);
+  border: 1px solid rgba(63, 111, 58, 0.2);
+  border-radius: 100px;
+  padding: 6px 16px 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3f6f3a;
+  direction: rtl;
+  animation: fadeIn 0.25s ease;
+}
+
+/* Decorative status dot inside the selected-city badge. */
+.pBadgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3f6f3a;
+  flex-shrink: 0;
+}
+
+/* Animate the selected-city badge when it appears. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button used to continue to the upload step. */
+.pNextBtn {
+  width: min(320px, 100%);
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #9b86b3 0%, #7b5fa3 100%);
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow:
+    0 4px 14px rgba(123, 95, 163, 0.35),
+    0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  direction: rtl;
+  margin-top: 4px;
+}
+
+/* Lift the enabled button on hover. */
+.pNextBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 22px rgba(123, 95, 163, 0.45),
+    0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* Return the enabled button to its original position while pressed. */
+.pNextBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(123, 95, 163, 0.3);
+}
+
+/* Visually indicate that the button is unavailable. */
+.pNextBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Shared positioning rules for architectural decorations. */
+.pDecor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Position the triangle decoration. */
+.pTriangle {
+  top: 20px;
+  left: 30px;
+  width: 90px;
+  opacity: 0.9;
+}
+
+/* Position the palm tree decoration. */
+.pPalm {
+  left: -2px;
+  bottom: -5px;
+  width: 200px;
+  opacity: 0.95;
+}
+
+/* Position the architectural leg decoration. */
+.pLeg {
+  right: 22px;
+  top: 40px;
+  width: 90px;
+  opacity: 0.85;
+}
+
+/* Main progress stepper layout. */
+.sStepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  direction: rtl;
+}
+
+/* Individual step container. */
+.sStep {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  min-width: 90px;
+}
+
+/* Default step indicator circle. */
+.sCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: #aaa;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+/* Step number displayed inside an incomplete circle. */
+.sCircleNum {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Highlight the current active step. */
+.sCircle.isActive {
+  border-color: #7b5fa3;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(123, 95, 163, 0.15);
+  color: #7b5fa3;
+}
+
+/* Display completed steps with the success color. */
+.sCircle.isDone {
+  border-color: #3f6f3a;
+  background: #3f6f3a;
+  color: #fff;
+}
+
+/* Text label displayed below each step. */
+.sLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+/* Highlight the label of the active step. */
+.sLabel.isActiveLabel {
+  color: #7b5fa3;
+}
+
+/* Connector line displayed between workflow steps. */
+.sTrack {
+  width: 48px;
+  height: 3px;
+  background: #e8e4ef;
+  border-radius: 100px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Fill element used to indicate completed progress. */
+.sTrackFill {
+  height: 100%;
+  width: 0%;
+  background: #3f6f3a;
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+/* Expand the connector fill when the preceding step is complete. */
+.sTrackFill.isFilled {
+  width: 100%;
+}
+
+/* Responsive adjustments for mobile screens. */
+@media (max-width: 600px) {
+  .pPanel {
+    padding: 40px 20px 36px;
+    border-radius: 18px;
+  }
+
+  .pTitle {
+    font-size: 26px;
+  }
+
+  .pPalm {
+    width: 180px;
+  }
+
+  .pLeg {
+    width: 80px;
+  }
+
+  .pTriangle {
+    width: 70px;
+  }
+
+  .sTrack {
+    width: 28px;
+  }
+
+  .sStepper {
+    gap: 0;
+  }
+}

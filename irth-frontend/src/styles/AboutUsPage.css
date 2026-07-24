@@ -1,0 +1,465 @@
+/* ============================================================
+   ABOUT US PAGE — IRTH
+   ============================================================ */
+
+/* Global design variables used throughout the page. */
+:root {
+  --beige: #ffff;
+  --ink: #1c1208;
+  --text: #090806;
+  --green: #2d6a3f;
+  --green-mid: #3f7c48;
+  --white: #ffffff;
+  --pill: 999px;
+  --font: "TheYearofHandicrafts";
+}
+
+/* Apply consistent box sizing and remove default spacing. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main page wrapper. */
+.about-wrap {
+  background: var(--beige);
+  font-family: var(--font);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Top navigation bar container. */
+.about-topbar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(180, 162, 130, 0.3);
+  position: relative;
+  z-index: 100;
+}
+
+/* Main two-column About Us layout. */
+.about-card {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 48px 88px 48px 12px;
+  column-gap: 88px;
+  direction: ltr;
+  background: var(--beige);
+}
+
+/* Left section containing the image slider. */
+.about-left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: calc(100vh - 72px - 96px);
+  max-height: 600px;
+  padding-top: 20px;
+  overflow: visible;
+  animation: revealLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Main image displayed inside the slider. */
+.about-left-img {
+  position: relative;
+  z-index: 3;
+  height: auto;
+  width: min(100%, 500px);
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+  filter:
+    drop-shadow(0 12px 32px rgba(30, 18, 6, 0.18))
+    drop-shadow(0 3px 8px rgba(30, 18, 6, 0.10));
+}
+
+/* Decorative triangle positioned above the main image. */
+.about-triangle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8px;
+  width: clamp(72px, 7.5vw, 96px);
+  height: auto;
+  z-index: 4;
+  opacity: 0.92;
+}
+
+/* Decorative vertical element positioned below the triangle. */
+.about-leg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(8px + clamp(72px, 7.5vw, 96px) + 6px);
+  width: clamp(30px, 3vw, 40px);
+  height: auto;
+  z-index: 4;
+  opacity: 0.85;
+}
+
+/* Decorative palm tree positioned near the image. */
+.about-palm {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  width: clamp(110px, 12vw, 160px);
+  height: auto;
+  z-index: 6;
+  opacity: 0.88;
+}
+
+/* Right section containing the logo and description. */
+.about-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  direction: rtl;
+  padding: 0 0 0 24px;
+  animation: revealRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+/* Inner content container for the right section. */
+.about-right-inner {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Main page title styling. */
+.about-title {
+  font-family: "TheYearofHandicrafts";
+  font-weight: 900;
+  font-size: clamp(72px, 9vw, 118px);
+  line-height: 1;
+  color: #3a2c1c;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px 0;
+  width: 100%;
+  text-align: right;
+}
+
+/* Decorative line displayed below the title or logo. */
+.about-divider {
+  width: 54px;
+  height: 3px;
+  background: linear-gradient(to left, var(--green), rgba(180, 162, 130, 0.6));
+  border-radius: var(--pill);
+  margin: 0 0 24px auto;
+  transform-origin: right center;
+  animation: growDivider 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+/* Platform description text. */
+.about-text {
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 2.1;
+  color: var(--text);
+  text-align: right;
+  margin: 0 0 30px 0;
+  width: 100%;
+}
+
+/* Container for the platform focus badges. */
+.about-badge-row {
+  justify-content: flex-end;
+  direction: rtl;
+  gap: 12px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* Individual platform focus badge. */
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: var(--pill);
+  background: rgba(255, 253, 248, 0.92);
+  border: 1.5px solid rgba(45, 106, 63, 0.2);
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow:
+    0 1px 4px rgba(20, 14, 4, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  cursor: default;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* Small circular indicator displayed inside each badge. */
+.about-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-mid);
+  flex-shrink: 0;
+}
+
+/* Add a subtle lift effect when hovering over a badge. */
+.about-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(20, 14, 4, 0.1);
+}
+
+/* Hide unused legacy page elements. */
+.about-logo,
+.about-left-overlay,
+.about-illustration,
+.illus-svg,
+.about-right::before {
+  display: none !important;
+}
+
+/* Animate the left section when the page loads. */
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animate the right section when the page loads. */
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animate the divider from right to left. */
+@keyframes growDivider {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Tablet and small desktop responsive styles. */
+@media (max-width: 1100px) {
+  /* Change the main layout from two columns to one column. */
+  .about-card {
+    grid-template-columns: 1fr;
+    padding: 32px 28px 44px;
+    min-height: unset;
+    gap: 36px;
+  }
+
+  /* Center the slider and disable its entrance animation. */
+  .about-left {
+    height: auto;
+    max-height: none;
+    min-height: 280px;
+    padding-top: 80px;
+    justify-content: center;
+    animation: none;
+    opacity: 1;
+  }
+
+  /* Adjust the slider image size for smaller screens. */
+  .about-left-img {
+     width: min(100%, 520px);
+      max-height: 480px;
+  }
+
+  /* Resize and reposition the triangle decoration. */
+  .about-triangle {
+    top: 6px;
+    width: clamp(60px, 10vw, 80px);
+  }
+
+  /* Resize and reposition the vertical decoration. */
+  .about-leg {
+    top: calc(6px + clamp(60px, 10vw, 80px) + 6px);
+    width: clamp(26px, 4vw, 36px);
+  }
+
+  /* Resize and reposition the palm decoration. */
+  .about-palm {
+    width: clamp(90px, 16vw, 130px);
+    left: -12px;
+    bottom: -8px;
+  }
+
+  /* Center the right section and disable its entrance animation. */
+  .about-right {
+    padding: 0;
+    justify-content: center;
+    animation: none;
+    opacity: 1;
+  }
+
+  /* Allow the content to use the full available width. */
+  .about-right-inner {
+    max-width: 100%;
+  }
+
+  /* Reduce the title size on smaller screens. */
+  .about-title {
+    font-size: clamp(56px, 12vw, 84px);
+  }
+
+  /* Adjust the description text size. */
+  .about-text {
+    font-size: clamp(14px, 2.2vw, 16px);
+  }
+
+  /* Disable the divider animation on smaller screens. */
+  .about-divider {
+    animation: none;
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile responsive styles. */
+@media (max-width: 680px) {
+  /* Reduce page spacing on mobile devices. */
+  .about-card {
+    padding: 24px 18px 36px;
+    gap: 28px;
+  }
+
+  /* Reduce the main slider image size. */
+  .about-left-img {
+    width: min(300px, 90%);
+    max-height: 38vh;
+  }
+
+  /* Resize the triangle decoration. */
+  .about-triangle {
+    width: 58px;
+  }
+
+  /* Resize and reposition the vertical decoration. */
+  .about-leg {
+    top: calc(58px + 8px);
+    width: 26px;
+  }
+
+  /* Resize and reposition the palm decoration. */
+  .about-palm {
+    width: 90px;
+    left: -8px;
+  }
+
+  /* Reduce the title size and spacing. */
+  .about-title {
+    font-size: 52px;
+    margin-bottom: 10px;
+  }
+
+  /* Adjust the description for improved mobile readability. */
+  .about-text {
+    font-size: 14.5px;
+    line-height: 1.95;
+    margin-bottom: 22px;
+  }
+
+  /* Reduce the badge size on mobile devices. */
+  .about-badge {
+    font-size: 12px;
+    padding: 7px 13px;
+  }
+}
+
+/* Ensure the slider container supports absolutely positioned controls. */
+.about-left {
+  position: relative;
+}
+
+/* Shared styling for optional slider arrow buttons. */
+.about-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #3a2c1c;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: 0.2s ease;
+}
+
+/* Slider arrow button hover state. */
+.about-slider-btn:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Position the previous-image button on the left. */
+.about-slider-btn-left {
+  left: -18px;
+}
+
+/* Position the next-image button on the right. */
+.about-slider-btn-right {
+  right: -18px;
+}
+
+/* Container for the slider navigation dots. */
+.about-slider-dots {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Default slider dot appearance. */
+.about-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #ede2d1;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Highlight the dot that represents the active image. */
+.about-dot.active {
+  background: #2d6a3f;
+  transform: scale(1.2);
+}
+
+/* IRTH logo displayed above the description. */
+.about-title-logo {
+  width: clamp(130px, 15vw, 210px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  align-self: flex-end;
+  margin: 0 0 14px auto;
+}

@@ -1,0 +1,124 @@
+/* =========================
+   GLOBAL PROJECT FONTS
+========================= */
+
+@font-face {
+  font-family: "TheYearofHandicrafts";
+  src: url("./assets/fonts/TheYearofHandicrafts-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TheYearofHandicrafts";
+  src: url("./assets/fonts/TheYearofHandicrafts-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TheYearofHandicrafts";
+  src: url("./assets/fonts/TheYearofHandicrafts-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TheYearofHandicrafts";
+  src: url("./assets/fonts/TheYearofHandicrafts-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IrthRegular";
+  src: url("./assets/fonts/TheYearofHandicrafts-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IrthSemiBold";
+  src: url("./assets/fonts/TheYearofHandicrafts-SemiBold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IrthBold";
+  src: url("./assets/fonts/TheYearofHandicrafts-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IrthBlack";
+  src: url("./assets/fonts/TheYearofHandicrafts-Black.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================
+   GLOBAL BASE
+========================= */
+
+html {
+  direction: rtl;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "TheYearofHandicrafts", sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+div,
+span,
+p,
+label,
+input,
+textarea,
+select,
+li,
+td,
+th,
+a,
+button {
+  font-family: "TheYearofHandicrafts", sans-serif;
+  font-synthesis: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "TheYearofHandicrafts", sans-serif;
+  font-weight: 900;
+  font-synthesis: none;
+}
+
+button,
+nav a,
+.nav-link,
+.header-link {
+  font-family: "TheYearofHandicrafts", sans-serif;
+  font-weight: 600;
+  font-synthesis: none;
+}
