@@ -574,8 +574,3 @@
     font-size: 10px;
   }
 }
-@media (max-width: 600px) {
-  .pPanel {
-    border: 8px solid red !important;
-  }
-}
