@@ -1,4 +1,4 @@
-// Import React Router components used to manage application navigation.
+// Import React Router components used for application navigation.
 import {
   BrowserRouter as Router,
   Navigate,
@@ -11,6 +11,9 @@ import AboutUsPage from "./pages/AboutUsPage";
 import CityPage from "./pages/CityPage";
 import UploadPage from "./pages/UploadPage";
 import ResultsPage from "./pages/ResultsPage";
+
+// Import the shared website footer.
+import Footer from "./components/Footer";
 
 // Import the global application stylesheet.
 import "./styles.css";
@@ -40,6 +43,9 @@ function App() {
         {/* Redirect unknown routes to the city selection page. */}
         <Route path="*" element={<Navigate to="/city" replace />} />
       </Routes>
+
+      {/* Display the shared footer below all application pages. */}
+      <Footer />
     </Router>
   );
 }

@@ -1,0 +1,25 @@
+/* Main website footer container. */
+.footer {
+    width: 100%;
+    padding: 18px 20px;
+    background: #ffffff;
+    border-top: 1px solid rgba(63, 111, 58, 0.12);
+    text-align: center;
+    font-family: "TheYearofHandicrafts", sans-serif;
+    color: rgba(46, 37, 53, 0.65);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  /* Remove the default paragraph margin. */
+  .footer p {
+    margin: 0;
+  }
+  
+  /* Adjust the footer spacing and text size on mobile screens. */
+  @media (max-width: 600px) {
+    .footer {
+      padding: 15px 12px;
+      font-size: 12px;
+    }
+  }
