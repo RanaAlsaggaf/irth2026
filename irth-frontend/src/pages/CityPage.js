@@ -72,17 +72,17 @@ export default function CityPage2() {
               <div className="pTitleGroup">
                 <span className="pEyebrow">الخطوة الأولى</span>
 
-                <h1 className="pTitle">اختــر المديـــنة</h1>
+                <h1 className="pTitle">اختــر الــطــراز المعمــــاري</h1>
 
                 <p className="pSubtitle">
-                  حدّد المنطقة الجغرافية للحصول على أفضل النتائج
+                  حدّد الطراز المعماري للحصول على أفضل النتائج
                 </p>
               </div>
 
               {/* City selection field with focus-based styling. */}
               <div className={`pField ${focused ? "pField--focused" : ""}`}>
                 <label className="pLabel" htmlFor="city-select">
-                  المدينة
+                  الطراز المعماري
                 </label>
 
                 <div className="pSelectWrapper">
@@ -96,7 +96,7 @@ export default function CityPage2() {
                     aria-label="اخـــتر المديــــنة"
                   >
                     <option value="" disabled>
-                      اختـر مديـنة
+                      اختـر الطراز المعماري
                     </option>
 
                     <option value="النجدية">النجدية</option>

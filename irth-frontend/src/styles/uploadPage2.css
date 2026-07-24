@@ -552,6 +552,8 @@
     min-height: 36px;
     padding: 4px 20px 6px;
     font-size: 14px;
+    justify-self: center !important;
+    margin-inline: auto !important;
   }
 
   .uTitle {
