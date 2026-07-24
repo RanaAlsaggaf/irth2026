@@ -509,30 +509,162 @@
   opacity: 0.85;
 }
 
-/* Responsive adjustments for mobile screens. */
+/* ===== Mobile layout ===== */
 @media (max-width: 600px) {
+  .uPage {
+    min-height: calc(100vh - 60px);
+    padding: 20px 14px 40px;
+    overflow-x: hidden;
+  }
+
+  .uStepperWrap {
+    margin-top: 4px;
+    margin-bottom: 24px;
+  }
+
+  .uContainer {
+    width: 100%;
+  }
+
   .uPanel {
-    padding: 40px 20px 36px;
-    border-radius: 18px;
+    width: 100%;
+    padding: 36px 18px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .uContent {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    gap: 18px;
+  }
+
+  .uTitleGroup {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    gap: 7px;
+  }
+
+  .uEyebrow {
+    width: min(230px, 85%);
+    min-height: 36px;
+    padding: 4px 20px 6px;
+    font-size: 14px;
   }
 
   .uTitle {
-    font-size: 24px;
+    font-size: 27px;
+    line-height: 1.3;
+  }
+
+  .uSubtitle {
+    padding: 0 8px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .uDropzone {
+    position: relative;
+    z-index: 6;
+    width: 100%;
+    min-height: 230px;
+    padding: 26px 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 17px;
+  }
+
+  .uDropInner {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .uCloudWrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .uCloud {
+    width: 24px;
+    height: 24px;
+  }
+
+  .uDropMain {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .uDropSub {
+    font-size: 11px;
+    letter-spacing: 0.7px;
+  }
+
+  .uFileCard {
+    position: relative;
+    z-index: 6;
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .uMiniActions {
+    position: relative;
+    z-index: 6;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .uMiniBtn {
+    padding: 9px 18px;
+  }
+
+  .uUploadBtn {
+    position: relative;
+    z-index: 6;
+    width: 100%;
+    min-height: 54px;
+    margin-top: 2px;
+  }
+
+  /* Reduce decorative elements on mobile. */
+  .uTriangle {
+    top: 20px;
+    left: 18px;
+    width: 48px;
+    opacity: 0.55;
   }
 
   .uPalm {
-    width: 180px;
+    left: -34px;
+    bottom: -34px;
+    width: 125px;
+    opacity: 0.2;
   }
 
   .uLeg {
-    width: 80px;
+    right: -28px;
+    top: 105px;
+    width: 68px;
+    opacity: 0.18;
   }
 
-  .uTriangle {
-    width: 70px;
+  /* Make the stepper fit the mobile width. */
+  .sStep {
+    min-width: 65px;
+    gap: 6px;
+  }
+
+  .sCircle {
+    width: 32px;
+    height: 32px;
   }
 
   .sTrack {
-    width: 28px;
+    width: 24px;
+  }
+
+  .sLabel {
+    font-size: 10px;
   }
 }
