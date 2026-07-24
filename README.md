@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="./irth-frontend/public/irth-header.png" alt="IRTH Logo" width="320" />
+<img src="./irth-frontend/public/irth-header.png" alt="IRTH Header" width="100%" />
+
 
 # IRTH | إرث
 
