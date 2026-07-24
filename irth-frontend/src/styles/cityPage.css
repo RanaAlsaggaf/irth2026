@@ -445,3 +445,132 @@
     gap: 0;
   }
 }
+
+/* ===== Mobile layout fixes ===== */
+@media (max-width: 600px) {
+  .pPage {
+    padding: 20px 12px 36px;
+  }
+
+  .pTop {
+    margin-top: 6px;
+    margin-bottom: 24px;
+  }
+
+  .pContainer {
+    width: 100%;
+  }
+
+  .pPanel {
+    width: 100%;
+    padding: 38px 18px 42px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .pContent {
+    gap: 18px;
+  }
+
+  .pTitleGroup {
+    width: 100%;
+    gap: 7px;
+  }
+
+  .pEyebrow {
+    width: auto;
+    min-height: 36px;
+    padding: 4px 22px 6px;
+    font-size: 14px;
+  }
+
+  .pTitle {
+    font-size: 29px;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .pSubtitle {
+    padding: 0 8px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .pField {
+    width: 100%;
+  }
+
+  .pLabel {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .pSelectWrapper {
+    width: 100%;
+  }
+
+  .pSelect {
+    min-height: 56px;
+    padding: 13px 18px 13px 42px;
+    font-size: 15px;
+    border-radius: 16px;
+  }
+
+  .pNextBtn {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    min-height: 54px;
+    margin-top: 4px;
+  }
+
+  /* Reduce decorative elements on mobile. */
+  .pTriangle {
+    top: 20px;
+    left: 18px;
+    width: 52px;
+    opacity: 0.65;
+  }
+
+  .pPalm {
+    left: -28px;
+    bottom: -24px;
+    width: 125px;
+    opacity: 0.28;
+  }
+
+  .pLeg {
+    right: -25px;
+    top: 105px;
+    width: 70px;
+    opacity: 0.22;
+  }
+
+  /* Keep all form content above the decorative images. */
+  .pTitleGroup,
+  .pField,
+  .pSelectedBadge,
+  .pNextBtn {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Make the stepper fit smaller screens. */
+  .sStep {
+    min-width: 68px;
+    gap: 6px;
+  }
+
+  .sCircle {
+    width: 31px;
+    height: 31px;
+  }
+
+  .sTrack {
+    width: 25px;
+  }
+
+  .sLabel {
+    font-size: 10px;
+  }
+}
